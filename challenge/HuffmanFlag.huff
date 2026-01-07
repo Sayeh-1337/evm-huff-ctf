@@ -1,0 +1,33 @@
+#define macro INIT() = takes(0) returns(0) {
+    0x1337c0de
+    0x00
+    sstore
+    
+    stop
+}
+
+#define macro MAIN() = takes(0) returns(0) {
+    INIT()
+    
+    0x4554414f494e5348523334304b434d445f
+    0x00
+    mstore
+    
+    0x7f5b524b46433f3d3c3228231e19140f0a
+    0x11
+    mstore
+    
+    0x867c69be
+    0x22
+    mstore
+    
+    0x02e3759e
+    0x26
+    mstore
+    
+    0xff144c76
+    0x2a
+    mstore
+    
+    stop
+}

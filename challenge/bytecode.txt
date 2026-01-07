@@ -1,0 +1,25 @@
+CONTRACT BYTECODE
+=================
+
+This is the bytecode you need to disassemble and analyze.
+
+The bytecode contains:
+- Storage operations (SSTORE/SLOAD)
+- Multiple PUSH operations with embedded data
+- Metadata and encrypted payload fragments
+
+ANALYSIS:
+---------
+1. Disassemble: cast disassemble <BYTECODE>
+2. Identify storage operations
+3. Extract data from PUSH operations
+4. Look for patterns in the hex data
+
+TOOLS:
+------
+- cast disassemble: Bytecode disassembly
+- cast storage: Storage inspection
+- Python: For decryption and decoding
+
+The encoded data is embedded in the bytecode.
+You must extract and process it to recover the flag.

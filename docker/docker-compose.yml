@@ -1,0 +1,37 @@
+services:
+  anvil:
+    image: ghcr.io/foundry-rs/foundry:latest
+    container_name: huff-ctf-anvil
+    entrypoint: ["/bin/sh", "-c"]
+    command: ["exec anvil --host 0.0.0.0 --port 8545"]
+    ports:
+      - "8545:8545"
+    networks:
+      - huff-ctf-network
+    environment:
+      - FOUNDRY_DISABLE_NIGHTLY_WARNING=1
+
+  huff-ctf-challenge:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: huff-ctf-challenge
+    depends_on:
+      anvil:
+        condition: service_started
+    volumes:
+      - ../challenge:/app/challenge
+      - ../README.md:/app/README.md
+    ports:
+      - "3000:3000"  # Optional: web interface
+    environment:
+      - RPC_URL=http://anvil:8545
+    networks:
+      - huff-ctf-network
+    stdin_open: true
+    tty: true
+    entrypoint: /app/docker/entrypoint.sh
+
+networks:
+  huff-ctf-network:
+    driver: bridge

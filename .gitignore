@@ -1,0 +1,41 @@
+# Solution files - KEEP PRIVATE
+solution/
+*.pyc
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Organizer documentation (moved to docs/)
+docs/
+solution/
+# Organizer scripts
+challenge/get_bytecode.*
+challenge/deploy.sh
+
+# Contract source (if bytecode-only challenge)
+# Uncomment if you want to hide source code:
+# challenge/HuffmanFlag.huff
+
+# Docker (optional - uncomment if not needed)
+# docker/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+

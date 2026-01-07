@@ -1,0 +1,39 @@
+HUFF-CTF Challenge - Additional Context
+==========================================
+
+The contract bytecode contains encoded data that requires multiple steps to decode.
+
+STORAGE LAYOUT:
+---------------
+The contract uses storage slots to persist data.
+Some slots are written to, others are only read from.
+
+BYTECODE STRUCTURE:
+-------------------
+The bytecode contains multiple PUSH operations.
+Some contain metadata, others contain encrypted payload fragments.
+
+COMPRESSION:
+------------
+The message uses variable-length encoding based on character frequency.
+Higher frequency characters have shorter codes.
+
+ENCRYPTION:
+-----------
+The compressed data is encrypted using a symmetric cipher.
+The key is stored in contract storage.
+
+FRAGMENTATION:
+--------------
+The encrypted message is split into multiple parts.
+All parts must be decrypted and combined before decompression.
+
+EXTRACTION:
+-----------
+Metadata and payload are embedded in bytecode as hex data.
+Look for patterns in PUSH operations.
+
+VERIFICATION:
+-------------
+The decoded message should make sense in the context of the challenge.
+The flag format is HUFF{...}
