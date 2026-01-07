@@ -23,3 +23,4 @@ docker exec huff-ctf-challenge ping -c 1 anvil 2>&1 | head -2 || echo "   ❌ Ca
 echo ""
 echo "✅ Diagnostic complete"
 
+

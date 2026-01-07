@@ -23,3 +23,4 @@ docker network inspect huff-ctf-network --format '{{range .Containers}}{{.Name}}
 echo ""
 echo "✅ Diagnostic complete"
 
+
