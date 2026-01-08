@@ -15,10 +15,20 @@ ANALYSIS:
 3. Extract data from PUSH operations
 4. Look for patterns in the hex data
 
+FUNCTION SELECTORS:
+-------------------
+The bytecode may contain function routing logic.
+Look for comparisons with 4-byte values (function selectors).
+Function selectors are the first 4 bytes of keccak256(function_signature).
+
+Example: calldataload + shr(224) + eq(selector) = function routing
+
 TOOLS:
 ------
 - cast disassemble: Bytecode disassembly
 - cast storage: Storage inspection
+- cast sig: Calculate function selector
+- cast call: Call contract functions
 - Python: For decryption and decoding
 
 The encoded data is embedded in the bytecode.

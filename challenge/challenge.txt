@@ -33,6 +33,20 @@ EXTRACTION:
 Metadata and payload are embedded in bytecode as hex data.
 Look for patterns in PUSH operations.
 
+FUNCTION INTERACTION:
+---------------------
+The contract may expose functions that can be called.
+To call a function, you need its function selector.
+Function selector = first 4 bytes of keccak256(function_signature)
+
+Example: For a function signature "functionName(type)", calculate:
+keccak256("functionName(type)") -> first 4 bytes = function selector
+
+You can calculate selectors using:
+- cast sig "functionName(type)"
+- Python: keccak256 hash then take first 4 bytes
+- Online tools
+
 VERIFICATION:
 -------------
 The decoded message should make sense in the context of the challenge.

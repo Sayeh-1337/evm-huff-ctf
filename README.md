@@ -117,15 +117,21 @@ The bytecode will be provided through the CTF platform interface.
    - What happens when you read an uninitialized slot?
    - Example: `cast storage <CONTRACT_ADDRESS> 0 --rpc-url <RPC>`
 
-3. **Extract metadata**:
+3. **Analyze function routing** (if applicable):
+   - Look for function selector checks in bytecode
+   - Function selector = first 4 bytes of `keccak256(function_signature)`
+   - Calculate: `cast sig "functionName(type)"` or use keccak256 hash
+   - If contract has functions, identify which ones exist
+
+4. **Extract metadata**:
    - Look for PUSH operations with structured patterns
    - Some contain character data, others contain numeric data
 
-4. **Extract payload**:
+5. **Extract payload**:
    - Find PUSH operations with encrypted fragments
    - Multiple fragments need to be combined
 
-5. **Decrypt and decode**:
+6. **Decrypt and decode**:
    - Recover the encryption key from storage
    - Decrypt each fragment separately
    - Convert decrypted bytes to bitstream
@@ -168,6 +174,19 @@ What if a security check reads a slot that was never initialized?
 <summary>💡 Spoiler: Storage Inspection</summary>
 Start by checking the first few storage slots (0, 1, 2...).
 Use: <code>cast storage &lt;CONTRACT_ADDRESS&gt; &lt;slot&gt; --rpc-url &lt;RPC&gt;</code>
+</details>
+</details>
+
+<details>
+<summary>🔧 Function Interaction</summary>
+Contracts may expose functions that can be called. To interact with functions, you need the function selector. Function selectors are calculated as the first 4 bytes of keccak256(function_signature).
+
+<details>
+<summary>💡 Spoiler: Function Selector Calculation</summary>
+Use <code>cast sig "functionName(type)"</code> to calculate function selectors.
+Example: <code>cast sig "myFunction(uint256)"</code> returns the 4-byte selector.
+Or calculate: <code>keccak256("functionName(type)")[0:4]</code> in Python.
+Once you find the selector value in bytecode, you can reverse engineer the function name by trying common function signatures or analyzing what the function does.
 </details>
 </details>
 
